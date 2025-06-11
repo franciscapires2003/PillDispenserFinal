@@ -1,4 +1,284 @@
-html {
-  height: 100%;
-  width: 100%;
+body {
+  margin: 0;
+  font-family: Roboto;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+}
+
+/* Container a simular um ecrã de telemóvel */
+.app {
+  width: 390px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #EBEFF3;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho e rodapé */
+header,
+footer {
+  background-color: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* PillDispenser no header*/
+.logo {
+  color: #081BAE;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+header .right-icons {
+  display: flex;
+  gap: 16px;
+}
+
+/* Todos os Ícones */
+.icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.icon-header {
+  width: 20px;
+  height: 20px;
+}
+
+footer {
+  width: 360px;
+  background-color: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 0;
+  z-index: 100; /* Add this to ensure footer stays above other content */
+}
+
+footer .icon-bar {
+  display: flex;
+  gap: 56px;
+}
+
+main {
+  flex: 1;
+  padding: 16px;
+  padding-bottom: 80px; /* Adjust this value based on your footer height */
+}
+
+.plano-de-hoje h1 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.plano-de-hoje p {
+  font-size: 16px;
+  color: #525252;
+  margin-bottom: 24px;
+}
+
+.medication-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.time-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.time-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.time-header h2 {
+  font-size: 18px;
+  color: #525252;
+  margin: 0;
+}
+
+.time-header p {
+  font-size: 14px;
+  color: #525252;
+  margin: 0;
+}
+
+.medication {
+  background-color: rgba(181, 196, 234, 0.8);
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer; /* Add this line */
+
+}
+
+.medication p {
+  color: #081BAE;
+  font-size: 15px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+#done, #ampulheta{
+width: 15px;
+  
+}
+
+/********* Página dos meus Comprimidos///////*/
+
+.page-header h1 {
+  font-size: 20px;
+  margin-bottom: 24px;
+  color: #000;
+}
+
+.medication-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.medication-info {
+  width: 90%;
+  border-radius: 10px;
+  background: rgba(181, 196, 234, 0.80);
+  padding: 16px;
+  cursor: pointer;
+}
+
+.medication-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.medication-name strong {
+  color: #081BAE;
+  font-size: 15px;
+}
+
+.medication-info .dosage {
+  color: #525252;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.medication-info .icon {
+  width: 24px;
+  height: 24px;
+  padding-right: 0;
+}
+
+/***** Página de Perfil *****/
+
+/* Profile header styles */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.profile-photo-container {
+  margin-right: 16px;
+}
+
+.profile-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-header h1 {
+  font-size: 20px;
+  color: #000;
+  margin: 0;
+}
+
+/* User info section */
+.user-info {
+  margin-bottom: 16px;
+}
+
+.user-info h3 {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.user-info p {
+  font-size: 14px;
+  color: #525252;
+  margin: 4px 0;
+}
+
+/* Divider lines */
+.divider {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 16px 0;
+}
+
+.menu-divider {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 12px 0;
+}
+
+/* Profile menu styles */
+.profile-menu {
+  margin-top: 24px;
+}
+
+.menu-item {
+  margin-bottom: 4px;
+}
+
+.menu-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.menu-content p {
+  color: #081BAE;
+  font-size: 15px;
+  margin: 0;
+}
+
+.sub-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-item p {
+  color: #525252;
+  font-size: 14px;
+  margin: 0;
+}
+
+.subtext {
+  color: #525252;
+  font-size: 13px;
+  margin: 0 0 16px;
+}
+
+/* Active footer icon */
+footer .icon-bar a img[src*="ativa"] {
+  filter: brightness(0) saturate(100%) invert(25%) sepia(99%) saturate(7484%) hue-rotate(235deg) brightness(89%) contrast(111%);
 }

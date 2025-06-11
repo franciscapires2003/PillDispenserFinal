@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PillDispenser - Várias vezes ao dia</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Main content styles */
+    .main-content {
+      padding: 20px;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .pill-section {
+      margin-bottom: 30px;
+    }
+
+    .pill-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #081BAE;
+    }
+
+    /* Dosage section styles */
+    .dosage-section {
+      background-color: #f0f4ff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+    }
+
+    .dosage-title {
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .dosage-times {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .dosage-time {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dosage-label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .dosage-label.required:after {
+      content: " *";
+      color: red;
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: white;
+    }
+
+    /* Quantity section */
+    .quantity-section {
+      margin-bottom: 30px;
+    }
+
+    .quantity-label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    /* Button styles */
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      gap: 15px;
+    }
+
+    .button {
+      flex: 1;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .back-button {
+      background-color: #f0f0f0;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+
+    .add-button {
+      background-color: #081BAE;
+      color: white;
+      border: none;
+    }
+
+    .add-button:hover {
+      background-color: #0a20d0;
+    }
+
+    .divider {
+      border-top: 1px solid #e0e0e0;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header>
+      <div class="logo"><strong>PillDispenser</strong></div>
+      <div class="right-icons">
+        <img src="imagens/sino.svg" class="icon-header" title="Notificações">
+        <img src="imagens/logout.svg" class="icon-header" title="Logout">
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+      <div class="main-content">
+        <h1 class="page-title">Adicionar</h1>
+
+        <!-- Pill name section -->
+        <div class="pill-section">
+          <div class="pill-name" id="pill-name-display"></div>
+
+          <!-- Dosage section -->
+            <label class="dosage-label required">Ingestão</label>
+            <select id="ingestao">
+              <option value="1">1 vez por dia</option>
+              <option value="2">2 vezes por dia</option>
+              <option value="3" selected>3 vezes por dia</option>
+              <option value="4">4 vezes por dia</option>
+              <option value="5">5 vezes por dia</option>
+              <option value="6">6 vezes por dia</option>
+              <option value="7">7 vezes por dia</option>
+              <option value="8">8 vezes por dia</option>
+              <option value="9">9 vezes por dia</option>
+              <option value="10">10 vezes por dia</option>
+              <option value="11">11 vezes por dia</option>
+              <option value="12">12 vezes por dia</option>
+            </select>
+            <div class="dosage-times" id="dosage-times-container">
+              <!-- First dosage time -->
+              <div class="dosage-time">
+                <label class="dosage-label required">1° toma</label>
+                <select class="dose-time" data-index="0">
+                  <option value="00:00">00:00</option>
+                  <option value="01:00">01:00</option>
+                  <option value="02:00">02:00</option>
+                  <option value="03:00">03:00</option>
+                  <option value="04:00">04:00</option>
+                  <option value="05:00">05:00</option>
+                  <option value="06:00" selected>06:00</option>
+                  <option value="07:00">07:00</option>
+                  <option value="08:00">08:00</option>
+                  <option value="09:00">09:00</option>
+                  <option value="10:00">10:00</option>
+                  <option value="11:00">11:00</option>
+                  <option value="12:00">12:00</option>
+                  <option value="13:00">13:00</option>
+                  <option value="14:00">14:00</option>
+                  <option value="15:00">15:00</option>
+                  <option value="16:00">16:00</option>
+                  <option value="17:00">17:00</option>
+                  <option value="18:00">18:00</option>
+                  <option value="19:00">19:00</option>
+                  <option value="20:00">20:00</option>
+                  <option value="21:00">21:00</option>
+                  <option value="22:00">22:00</option>
+                  <option value="23:00">23:00</option>
+                </select>
+              </div>
+
+              <!-- Second dosage time -->
+              <div class="dosage-time">
+                <label class="dosage-label required">2° toma</label>
+                <select class="dose-time" data-index="1">
+                  <option value="00:00">00:00</option>
+                  <option value="01:00">01:00</option>
+                  <option value="02:00">02:00</option>
+                  <option value="03:00">03:00</option>
+                  <option value="04:00">04:00</option>
+                  <option value="05:00">05:00</option>
+                  <option value="06:00">06:00</option>
+                  <option value="07:00">07:00</option>
+                  <option value="08:00">08:00</option>
+                  <option value="09:00">09:00</option>
+                  <option value="10:00">10:00</option>
+                  <option value="11:00">11:00</option>
+                  <option value="12:00">12:00</option>
+                  <option value="13:00">13:00</option>
+                  <option value="14:00" selected>14:00</option>
+                  <option value="15:00">15:00</option>
+                  <option value="16:00">16:00</option>
+                  <option value="17:00">17:00</option>
+                  <option value="18:00">18:00</option>
+                  <option value="19:00">19:00</option>
+                  <option value="20:00">20:00</option>
+                  <option value="21:00">21:00</option>
+                  <option value="22:00">22:00</option>
+                  <option value="23:00">23:00</option>
+                </select>
+              </div>
+
+              <!-- Third dosage time -->
+              <div class="dosage-time">
+                <label class="dosage-label required">3° toma</label>
+                <select class="dose-time" data-index="2">
+                  <option value="00:00">00:00</option>
+                  <option value="01:00">01:00</option>
+                  <option value="02:00">02:00</option>
+                  <option value="03:00">03:00</option>
+                  <option value="04:00">04:00</option>
+                  <option value="05:00">05:00</option>
+                  <option value="06:00">06:00</option>
+                  <option value="07:00">07:00</option>
+                  <option value="08:00">08:00</option>
+                  <option value="09:00">09:00</option>
+                  <option value="10:00">10:00</option>
+                  <option value="11:00">11:00</option>
+                  <option value="12:00">12:00</option>
+                  <option value="13:00">13:00</option>
+                  <option value="14:00">14:00</option>
+                  <option value="15:00">15:00</option>
+                  <option value="16:00">16:00</option>
+                  <option value="17:00">17:00</option>
+                  <option value="18:00">18:00</option>
+                  <option value="19:00">19:00</option>
+                  <option value="20:00">20:00</option>
+                  <option value="21:00">21:00</option>
+                  <option value="22:00" selected>22:00</option>
+                  <option value="23:00">23:00</option>
+                </select>
+              </div>
+            </div>
+        </div>
+
+        <!-- Quantity section -->
+        <div class="quantity-section">
+          <label class="quantity-label">Quantidade:</label>
+          <select id="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8" selected>8</option>
+          </select>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+          <button class="button back-button">Voltar</button>
+          <button class="button add-button" id="add-button">Adicionar</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="icon-bar">
+        <a href="index.html"><img src="imagens/casa.svg" class="icon" title="Casa"></a>
+        <a href="comprimidos.html"><img src="imagens/comprimido.svg" class="icon" title="Comprimido"></a>
+        <a href="adicionar.html"><img src="imagens/mais.svg" class="icon" title="Adicionar"></a>
+        <a href="perfil.html"><img src="imagens/perfil.svg" class="icon" title="Perfil"></a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get pill name from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const pillName = urlParams.get('pill') || 'Pílula';
+      document.getElementById('pill-name-display').textContent = pillName;
+
+      const ingestaoSelect = document.getElementById('ingestao');
+      const dosageTimesContainer = document.getElementById('dosage-times-container');
+
+      // Function to generate time options
+      function generateTimeOptions(selectedTime = '06:00') {
+        let options = '';
+        for (let i = 0; i < 24; i++) {
+          const hour = i.toString().padStart(2, '0');
+          const time = `${hour}:00`;
+          const selected = time === selectedTime ? 'selected' : '';
+          options += `<option value="${time}" ${selected}>${time}</option>`;
+        }
+        return options;
+      }
+
+      // Function to update dosage time inputs based on selection
+      function updateDosageTimes() {
+        const numDoses = parseInt(ingestaoSelect.value);
+        dosageTimesContainer.innerHTML = '';
+
+        for (let i = 0; i < numDoses; i++) {
+          const doseNumber = i + 1;
+          let selectedTime = '06:00'; // Default time
+
+          // Try to preserve existing selections
+          const existingSelect = document.querySelector(`.dose-time[data-index="${i}"]`);
+          if (existingSelect) {
+            selectedTime = existingSelect.value;
+          }
+
+          const doseTimeHTML = `
+            <div class="dosage-time">
+              <label class="dosage-label required">${doseNumber}° toma</label>
+              <select class="dose-time" data-index="${i}">
+                ${generateTimeOptions(selectedTime)}
+              </select>
+            </div>
+          `;
+          dosageTimesContainer.innerHTML += doseTimeHTML;
+        }
+      }
+
+      // Initial setup
+      updateDosageTimes();
+
+      // Event listener for ingestao select
+      ingestaoSelect.addEventListener('change', updateDosageTimes);
+
+      // Add button functionality
+      document.getElementById('add-button').addEventListener('click', function() {
+        const doseTimes = Array.from(document.querySelectorAll('.dose-time')).map(select => select.value);
+        const quantity = document.getElementById('quantity').value;
+
+        const medication = {
+          name: pillName,
+          scheduleType: 'multiple-times',
+          times: doseTimes,
+          quantity: quantity
+        };
+
+        // Save to localStorage
+        const medications = JSON.parse(localStorage.getItem('medications') || '[]');
+        medications.push(medication);
+        localStorage.setItem('medications', JSON.stringify(medications));
+
+        alert(`${pillName} foi adicionado com sucesso!`);
+        window.location.href = 'comprimidos.html';
+      });
+
+      // Back button functionality
+      document.querySelector('.back-button').addEventListener('click', function() {
+        window.history.back();
+      });
+    });
+  </script>
+</body>
+
+</html>

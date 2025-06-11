@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PillDispenser</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Add any additional styles you need */
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header>
+      <div class="logo"><strong>PillDispenser</strong></div>
+      <div class="right-icons">
+        <img src="imagens/sino.svg" class="icon-header" title="Notificações">
+        <img src="imagens/logout.svg" class="icon-header" title="Logout">
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+      <div class="page-header">
+        <h1>Os meus comprimidos</h1>
+      </div>
+
+      <div class="medication-list" id="medication-list">
+        <!-- Default medications -->
+        <div class="medication-info">
+          <div class="medication-name">
+            <strong>Metformin 850mg</strong>
+            <img src="imagens/seta.svg" class="icon" title="Seta">
+          </div>
+          <p class="dosage">2 comprimidos por dia, todos os dias</p>
+        </div>
+
+        <div class="medication-info">
+          <div class="medication-name">
+            <strong>Lisinopril 10mg</strong>
+            <img src="imagens/seta.svg" class="icon" title="Seta">
+          </div>
+          <p class="dosage">1 comprimido por dia, todos os dias</p>
+        </div>
+
+        <div class="medication-info">
+          <div class="medication-name">
+            <strong>Simvastatina 20mg</strong>
+            <img src="imagens/seta.svg" class="icon" title="Seta">
+          </div>
+          <p class="dosage">2 comprimidos por dia, todos os dias</p>
+        </div>
+
+        <div class="medication-info">
+          <div class="medication-name">
+            <strong>Paracetamol 500mg</strong>
+            <img src="imagens/seta.svg" class="icon" title="Seta">
+          </div>
+          <p class="dosage">2 comprimidos por dia, durante 3 dias</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="icon-bar">
+        <a href="index.html"><img src="imagens/casa.svg" class="icon" title="Casa"></a>
+        <a href="comprimidos.html"><img src="imagens/comprimido_ativo.svg" class="icon" title="Comprimido"></a>
+        <a href="adicionar.html"><img src="imagens/mais.svg" class="icon" title="Adicionar"></a>
+        <a href="perfil.html"><img src="imagens/perfil.svg" class="icon" title="Perfil"></a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const medicationList = document.getElementById('medication-list');
+      const medications = JSON.parse(localStorage.getItem('medications') || '[]');
+
+      // Add each medication from localStorage to the list
+      medications.forEach(med => {
+        const medicationElement = document.createElement('div');
+        medicationElement.className = 'medication-info';
+
+        // Format the dosage text based on the schedule type
+        let dosageText = '';
+        if (med.scheduleType === 'multiple-times') {
+          dosageText = `${med.quantity} comprimido(s) ${med.times.length} vezes por dia (${med.times.join(', ')})`;
+        } else if (med.scheduleType === 'specific-days') {
+          dosageText = `${med.quantity} comprimido(s) nos dias ${med.days.join(', ')} às ${med.time}`;
+        } else if (med.scheduleType === 'cyclic') {
+          dosageText = `Modo cíclico: ${med.intakeDays} dias de ingestão, ${med.pauseDays} dias de pausa às ${med.time}`;
+        }
+
+        medicationElement.innerHTML = `
+          <div class="medication-name">
+            <strong>${med.name}</strong>
+            <img src="imagens/seta.svg" class="icon" title="Seta">
+          </div>
+          <p class="dosage">${dosageText}</p>
+        `;
+
+        // Add the new medication at the top of the list
+        medicationList.insertBefore(medicationElement, medicationList.firstChild);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PillDispenser - Intervalo</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Main content styles */
+    .main-content {
+      padding: 20px;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .pill-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #081BAE;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    /* Option styles */
+    .option-group {
+      margin-bottom: 25px;
+    }
+
+    .option-title {
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .radio-options {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .radio-option input {
+      accent-color: #081BAE;
+    }
+
+    /* Dropdown styles */
+    .dropdown-group {
+      margin-bottom: 25px;
+    }
+
+    .dropdown-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .dropdown-label.required:after {
+      content: " *";
+      color: red;
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: white;
+    }
+
+    /* Time slots display */
+    .time-slots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .time-slot {
+      background-color: #f0f4ff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #081BAE;
+    }
+
+    /* Button styles */
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      gap: 15px;
+    }
+
+    .button {
+      flex: 1;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .back-button {
+      background-color: #f0f0f0;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+
+    .add-button {
+      background-color: #081BAE;
+      color: white;
+      border: none;
+    }
+
+    .add-button:hover {
+      background-color: #0a20d0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header>
+      <div class="logo"><strong>PillDispenser</strong></div>
+      <div class="right-icons">
+        <img src="imagens/sino.svg" class="icon-header" title="Notificações">
+        <img src="imagens/logout.svg" class="icon-header" title="Logout">
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+      <div class="main-content">
+        <h1 class="page-title">Adicionar</h1>
+
+        <!-- Pill name (from previous page) -->
+        <div class="pill-name" id="pill-name-display">Pílula</div>
+
+        <!-- Interval options -->
+        <div class="option-group">
+          <div class="option-title">Pílula</div>
+          <div class="radio-options">
+            <div class="radio-option">
+              <input type="radio" id="hours" name="interval-type" value="hours" checked>
+              <label for="hours">A cada X horas</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="days" name="interval-type" value="days">
+              <label for="days">A cada X dias</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reminder frequency -->
+        <div class="dropdown-group">
+          <label class="dropdown-label required">Lembre a cada</label>
+          <select id="reminder-frequency">
+            <option value="1">1 hora</option>
+            <option value="2">2 horas</option>
+            <option value="3" selected>3 horas</option>
+            <option value="4">4 horas</option>
+            <option value="6">6 horas</option>
+            <option value="8">8 horas</option>
+            <option value="12">12 horas</option>
+          </select>
+        </div>
+
+        <!-- Start time -->
+        <div class="dropdown-group">
+          <label class="dropdown-label required">A partir das</label>
+          <select id="start-time">
+            <option value="00:00">00:00</option>
+            <option value="01:00">01:00</option>
+            <option value="02:00">02:00</option>
+            <option value="03:00">03:00</option>
+            <option value="04:00">04:00</option>
+            <option value="05:00">05:00</option>
+            <option value="06:00" selected>06:00</option>
+            <option value="07:00">07:00</option>
+            <option value="08:00">08:00</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+            <option value="22:00">22:00</option>
+            <option value="23:00">23:00</option>
+          </select>
+        </div>
+
+        <!-- All times display -->
+        <div class="option-group">
+          <div class="option-title">Todos os horários:</div>
+          <div class="time-slots" id="time-slots-container">
+            <!-- Generated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="dropdown-group">
+          <label class="dropdown-label required">Quantidade:</label>
+          <select id="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8" selected>8</option>
+          </select>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+          <button class="button back-button" onclick="window.history.back()">Voltar</button>
+          <button class="button add-button" id="add-button">Adicionar</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="icon-bar">
+        <a href="index.html"><img src="imagens/casa.svg" class="icon" title="Casa"></a>
+        <a href="comprimidos.html"><img src="imagens/comprimido.svg" class="icon" title="Comprimido"></a>
+        <a href="adicionar.html"><img src="imagens/mais.svg" class="icon" title="Adicionar"></a>
+        <a href="agendar.html"><img src="imagens/relogio_ativo.svg" class="icon" title="Agendar"></a>
+        <a href="perfil.html"><img src="imagens/perfil.svg" class="icon" title="Perfil"></a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get pill name from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const pillName = urlParams.get('pill') || 'Pílula';
+      document.getElementById('pill-name-display').textContent = pillName;
+
+      // Get DOM elements
+      const frequencySelect = document.getElementById('reminder-frequency');
+      const startTimeSelect = document.getElementById('start-time');
+      const timeSlotsContainer = document.getElementById('time-slots-container');
+      const addButton = document.getElementById('add-button');
+
+      // Function to calculate time slots
+      function calculateTimeSlots() {
+        const frequency = parseInt(frequencySelect.value);
+        const startTime = startTimeSelect.value;
+        const [startHours, startMinutes] = startTime.split(':').map(Number);
+
+        let currentHours = startHours;
+        let currentMinutes = startMinutes;
+        const timeSlots = [];
+
+        // Generate time slots for the entire day (24 hours)
+        while (currentHours < 24) {
+          // Format time as HH:MM
+          const formattedTime = 
+            `${currentHours.toString().padStart(2, '0')}:${currentMinutes.toString().padStart(2, '0')}`;
+          timeSlots.push(formattedTime);
+
+          // Add frequency hours
+          currentHours += frequency;
+        }
+
+        return timeSlots;
+      }
+
+      // Function to update displayed time slots
+      function updateTimeSlots() {
+        const timeSlots = calculateTimeSlots();
+        timeSlotsContainer.innerHTML = '';
+
+        timeSlots.forEach(time => {
+          const timeSlotElement = document.createElement('div');
+          timeSlotElement.className = 'time-slot';
+          timeSlotElement.textContent = time;
+          timeSlotsContainer.appendChild(timeSlotElement);
+        });
+      }
+
+      // Initial update
+      updateTimeSlots();
+
+      // Event listeners for changes
+      frequencySelect.addEventListener('change', updateTimeSlots);
+      startTimeSelect.addEventListener('change', updateTimeSlots);
+
+      // Add button functionality
+      addButton.addEventListener('click', function() {
+        const pillData = {
+          name: pillName,
+          type: document.querySelector('input[name="interval-type"]:checked').value,
+          frequency: frequencySelect.value,
+          startTime: startTimeSelect.value,
+          times: calculateTimeSlots(),
+          quantity: document.getElementById('quantity').value,
+          scheduleType: 'interval'
+        };
+
+        // Save to localStorage
+        let medications = JSON.parse(localStorage.getItem('medications') || '[]');
+        medications.push(pillData);
+        localStorage.setItem('medications', JSON.stringify(medications));
+
+        alert(`${pillName} foi adicionado com sucesso!`);
+        window.location.href = 'comprimidos.html';
+      });
+    });
+  </script>
+</body>
+
+</html>

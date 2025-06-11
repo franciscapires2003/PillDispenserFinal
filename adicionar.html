@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PillDispenser</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional styles specific to the Adicionar page */
+    .main-content {
+      padding: 20px;
+    }
+    
+    .form-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    
+    .form-group {
+      margin-bottom: 30px;
+    }
+    
+    .form-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #333;
+      font-size: 16px;
+    }
+    
+    .form-label.required:after {
+      content: " *";
+      color: red;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      background-color: white;
+    }
+    
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 15px;
+    }
+    
+    .radio-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background-color: #B5C4EA;
+    }
+    
+    .radio-option input[type="radio"] {
+      margin-top: 3px;
+      accent-color: #081BAE;
+    }
+    
+    .radio-label {
+      flex: 1;
+    }
+    
+    .radio-label strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 16px;
+      color: #081BAE;
+    }
+    
+    .radio-label small {
+      display: block;
+      font-size: 14px;
+      color: #666;
+      font-style: italic;
+    }
+    
+    .next-button {
+      background-color: #081BAE;
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 10px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 40px;
+      cursor: pointer;
+    }
+    
+    .next-button:hover {
+      background-color: #0a20d0;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header>
+      <div class="logo"><strong>PillDispenser</strong></div>
+      <div class="right-icons">
+        <img src="imagens/sino.svg" class="icon-header" title="Notificações">
+        <img src="imagens/logout.svg" class="icon-header" title="Logout">
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+      <div class="main-content">
+        <h1 class="form-title">Adicionar</h1>
+        
+        <div class="form-group">
+          <label class="form-label required">Introduza o nome do medicamento</label>
+          <input type="text" id="medication-name" class="form-input" placeholder="Nome Completo">
+          <div id="name-error" class="error-message">Por favor introduza o nome do medicamento</div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label required">Qual destas opções se adequa ao seu horário de medicação?</label>
+          <div id="schedule-error" class="error-message">Por favor selecione uma opção</div>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="intervalo" name="schedule" value="intervalo">
+              <label for="intervalo" class="radio-label">
+                <strong>Intervalo</strong>
+                <small>por exemplo, uma vez de dois em dois dias, uma vez de 6 em 6 horas</small>
+              </label>
+            </div>
+            
+            <div class="radio-option">
+              <input type="radio" id="varias-vezes" name="schedule" value="varias-vezes">
+              <label for="varias-vezes" class="radio-label">
+                <strong>Várias vezes ao dia</strong>
+                <small>por exemplo, 2 ou mais vezes por dia</small>
+              </label>
+            </div>
+            
+            <div class="radio-option">
+              <input type="radio" id="dias-especificos" name="schedule" value="dias-especificos">
+              <label for="dias-especificos" class="radio-label">
+                <strong>Dias específicos da semana</strong>
+                <small>por exemplo, seg., qua., e sex.</small>
+              </label>
+            </div>
+            
+            <div class="radio-option">
+              <input type="radio" id="modo-ciclico" name="schedule" value="modo-ciclico">
+              <label for="modo-ciclico" class="radio-label">
+                <strong>Modo Cíclico</strong>
+                <small>por exemplo, 21 dias de admissão, 7 dias de pausa</small>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <button class="next-button">Seguinte</button>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="icon-bar">
+        <a href="index.html"><img src="imagens/casa.svg" class="icon" title="Casa"></a>
+        <a href="comprimidos.html"><img src="imagens/comprimido.svg" class="icon" title="Comprimido"></a>
+        <a href="adicionar.html"><img src="imagens/mais_ativo.svg" class="icon" title="Adicionar"></a>
+        <a href="perfil.html"><img src="imagens/perfil.svg" class="icon" title="Perfil"></a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const nextButton = document.querySelector('.next-button');
+      const radioOptions = document.querySelectorAll('input[name="schedule"]');
+      const medicationInput = document.getElementById('medication-name');
+      const nameError = document.getElementById('name-error');
+      const scheduleError = document.getElementById('schedule-error');
+
+      nextButton.addEventListener('click', function() {
+        // Reset error messages
+        nameError.style.display = 'none';
+        scheduleError.style.display = 'none';
+        
+        // Get the medication name
+        const medicationName = medicationInput.value.trim();
+        
+        // Validate medication name
+        if (!medicationName) {
+          nameError.style.display = 'block';
+          medicationInput.focus();
+          return;
+        }
+        
+        // Check which option is selected
+        let selectedOption;
+        for (const option of radioOptions) {
+          if (option.checked) {
+            selectedOption = option.value;
+            break;
+          }
+        }
+        
+        // Validate schedule selection
+        if (!selectedOption) {
+          scheduleError.style.display = 'block';
+          return;
+        }
+        
+        // Redirect based on selection with medication name as URL parameter
+        const encodedName = encodeURIComponent(medicationName);
+        switch(selectedOption) {
+          case 'intervalo':
+            window.location.href = `intervalo.html?pill=${encodedName}`;
+            break;
+          case 'varias-vezes':
+            window.location.href = `varias-vezes.html?pill=${encodedName}`;
+            break;
+          case 'dias-especificos':
+            window.location.href = `dias-especificos.html?pill=${encodedName}`;
+            break;
+          case 'modo-ciclico':
+            window.location.href = `modo-ciclico.html?pill=${encodedName}`;
+            break;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

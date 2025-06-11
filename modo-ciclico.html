@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PillDispenser - Modo Cíclico</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Main content styles */
+    .main-content {
+      padding: 20px;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .pill-section {
+      margin-bottom: 30px;
+    }
+
+    .pill-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #081BAE;
+    }
+
+    /* Input section styles */
+    .input-section {
+      background-color: #f0f4ff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+      display: block;
+    }
+
+    .input-label.required:after {
+      content: " *";
+      color: red;
+    }
+
+    /* Consistent input styles */
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: white;
+      box-sizing: border-box;
+    }
+
+    /* Calendar icon styling */
+    .date-input-container {
+      position: relative;
+    }
+
+    .date-input-container::after {
+      content: "▼";
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #666;
+    }
+
+    /* Button styles */
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      gap: 15px;
+    }
+
+    .button {
+      flex: 1;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .back-button {
+      background-color: #f0f0f0;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+
+    .add-button {
+      background-color: #081BAE;
+      color: white;
+      border: none;
+    }
+
+    .add-button:hover {
+      background-color: #0a20d0;
+    }
+
+    .divider {
+      border-top: 1px solid #e0e0e0;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header>
+      <div class="logo"><strong>PillDispenser</strong></div>
+      <div class="right-icons">
+        <img src="imagens/sino.svg" class="icon-header" title="Notificações">
+        <img src="imagens/logout.svg" class="icon-header" title="Logout">
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+      <div class="main-content">
+        <h1 class="page-title">Adicionar</h1>
+
+        <!-- Pill name section -->
+        <div class="pill-section">
+          <div class="pill-name" id="pill-name-display"></div>
+
+            <!-- Days of intake -->
+            <div class="input-group">
+              <label class="input-label required">Dias de Ingestão</label>
+              <input type="number" id="intake-days" class="form-control" value="21" min="1">
+            </div>
+
+            <!-- Days of pause -->
+            <div class="input-group">
+              <label class="input-label required">Dias de pausa</label>
+              <input type="number" id="pause-days" class="form-control" value="7" min="1">
+            </div>
+
+            <!-- Start date -->
+            <div class="input-group">
+              <label class="input-label required">Data de inicio</label>
+              <div class="date-input-container">
+                <input type="date" id="start-date" class="form-control">
+              </div>
+            </div>
+
+            <!-- Time -->
+            <div class="input-group">
+              <label class="input-label required">Horário</label>
+              <select id="dose-time" class="form-control">
+                <option value="00:00">00:00</option>
+                <option value="01:00">01:00</option>
+                <option value="02:00">02:00</option>
+                <option value="03:00">03:00</option>
+                <option value="04:00">04:00</option>
+                <option value="05:00">05:00</option>
+                <option value="06:00">06:00</option>
+                <option value="07:00">07:00</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00" selected>22:00</option>
+                <option value="23:00">23:00</option>
+              </select>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+          <button class="button back-button">Voltar</button>
+          <button class="button add-button" id="add-button">Adicionar</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="icon-bar">
+        <a href="index.html"><img src="imagens/casa.svg" class="icon" title="Casa"></a>
+        <a href="comprimidos.html"><img src="imagens/comprimido.svg" class="icon" title="Comprimido"></a>
+        <a href="adicionar.html"><img src="imagens/mais.svg" class="icon" title="Adicionar"></a>
+        <a href="perfil.html"><img src="imagens/perfil.svg" class="icon" title="Perfil"></a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get pill name from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const pillName = urlParams.get('pill') || 'Pílula';
+      document.getElementById('pill-name-display').textContent = pillName;
+
+      // Set today's date as default for the date picker
+      const today = new Date();
+      const formattedDate = today.toISOString().split('T')[0];
+      document.getElementById('start-date').value = formattedDate;
+
+      // Format the date for display in the input (for browsers that don't show placeholder)
+      document.getElementById('start-date').setAttribute('value', formattedDate);
+
+      // Add button functionality
+      document.getElementById('add-button').addEventListener('click', function() {
+        const intakeDays = document.getElementById('intake-days').value;
+        const pauseDays = document.getElementById('pause-days').value;
+        const startDate = document.getElementById('start-date').value;
+        const doseTime = document.getElementById('dose-time').value;
+
+        const medication = {
+          name: pillName,
+          scheduleType: 'cyclic',
+          intakeDays: intakeDays,
+          pauseDays: pauseDays,
+          startDate: startDate,
+          time: doseTime
+        };
+
+        // Save to localStorage
+        const medications = JSON.parse(localStorage.getItem('medications') || '[]');
+        medications.push(medication);
+        localStorage.setItem('medications', JSON.stringify(medications));
+
+        alert(`${pillName} foi adicionado com sucesso!`);
+        window.location.href = 'comprimidos.html';
+      });
+
+      // Back button functionality
+      document.querySelector('.back-button').addEventListener('click', function() {
+        window.history.back();
+      });
+    });
+  </script>
+</body>
+
+</html>
